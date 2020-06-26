@@ -120,6 +120,10 @@ export const DarkMode = ({ api }: DarkModeProps) => {
     Partial<DarkModeStore>
   >('darkMode', defaultParams);
 
+  React.useEffect(() => {
+    updateStore({ ...defaultParams, current: defaultMode || isDark ? 'dark' : 'light', stylePreview: stylePreview || defaultParams.stylePreview, ...params });
+  }, [defaultMode, stylePreview, params, isDark]);
+
   // Save custom themes on init
   const initialMode = React.useRef(store(params).current);
 
